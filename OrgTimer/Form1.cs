@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace OrgTimer
 {
@@ -10,10 +11,11 @@ namespace OrgTimer
         {
             Working,
             Chilling,
-            Stopped
+            Stopped,
+            Overtime
         }
-        const int WorkIntervalInSecs = 600;
-        const int ChillIntervalInSecs = 120;
+        int _workIntervalInSecs;
+        int _chillIntervalInSecs;
         int _currentIntervalTimeInSecs;
         TimerState _timerState;
 
@@ -21,6 +23,8 @@ namespace OrgTimer
         {
             InitializeComponent();
             _timerState = TimerState.Stopped;
+            _workIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["WorkIntervalInSecs"]);
+            _chillIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["ChillIntervalInSecs"]);
         }
 
         private void ActionButton_Click(object sender, EventArgs e)
@@ -32,13 +36,13 @@ namespace OrgTimer
                     //start timer for 10 minutes
                     ActionButton.BackColor = Color.SeaShell;
                     _timerState = TimerState.Working;
-                    _currentIntervalTimeInSecs = WorkIntervalInSecs;
+                    _currentIntervalTimeInSecs = _workIntervalInSecs;
                     JobTimer.Start();
                     break;
                 case TimerState.Working:
                     //start timer for 2 minutes
                     _timerState = TimerState.Chilling;
-                    _currentIntervalTimeInSecs = ChillIntervalInSecs;
+                    _currentIntervalTimeInSecs = _chillIntervalInSecs;
                     break;
             }
         }
@@ -46,13 +50,15 @@ namespace OrgTimer
         private void JobTimer_Tick(object sender, EventArgs e)
         {
             JobTimer.Stop();
-            string timeLeft = TimeSpan.FromSeconds(--_currentIntervalTimeInSecs).ToString(@"mm\:ss");
-            ActionButton.Text = _timerState.ToString() + " " + timeLeft;
-            if (_currentIntervalTimeInSecs == 0)
-            {
-                _timerState = TimerState.Stopped;
-                ActionButton.BackColor = Color.Red;
-                return;
+            if (_timerState == TimerState.Overtime) {
+            }
+            else {
+                string timeLeft = TimeSpan.FromSeconds(--_currentIntervalTimeInSecs).ToString(@"mm\:ss");
+                ActionButton.Text = _timerState.ToString() + " " + timeLeft;
+                if (_currentIntervalTimeInSecs == 0)
+                {
+                    ActionButton.BackColor = Color.Red;
+                }
             }
             JobTimer.Start();
         }
