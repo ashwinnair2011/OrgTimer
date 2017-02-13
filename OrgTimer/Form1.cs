@@ -11,8 +11,7 @@ namespace OrgTimer
         {
             Working,
             Chilling,
-            Stopped,
-            Overtime
+            Stopped
         }
         int _workIntervalInSecs;
         int _chillIntervalInSecs;
@@ -29,12 +28,12 @@ namespace OrgTimer
 
         private void ActionButton_Click(object sender, EventArgs e)
         {
+            ActionButton.BackColor = Color.SeaShell;
             switch (_timerState)
             {
                 case TimerState.Stopped:
                 case TimerState.Chilling:
                     //start timer for 10 minutes
-                    ActionButton.BackColor = Color.SeaShell;
                     _timerState = TimerState.Working;
                     _currentIntervalTimeInSecs = _workIntervalInSecs;
                     JobTimer.Start();
@@ -50,15 +49,11 @@ namespace OrgTimer
         private void JobTimer_Tick(object sender, EventArgs e)
         {
             JobTimer.Stop();
-            if (_timerState == TimerState.Overtime) {
-            }
-            else {
-                string timeLeft = TimeSpan.FromSeconds(--_currentIntervalTimeInSecs).ToString(@"mm\:ss");
-                ActionButton.Text = _timerState.ToString() + " " + timeLeft;
-                if (_currentIntervalTimeInSecs == 0)
-                {
-                    ActionButton.BackColor = Color.Red;
-                }
+            string timeLeft = TimeSpan.FromSeconds(--_currentIntervalTimeInSecs).ToString(@"mm\:ss");
+            ActionButton.Text = _timerState.ToString() + " " + timeLeft;
+            if (_currentIntervalTimeInSecs == 0)
+            {
+                ActionButton.BackColor = Color.Red;
             }
             JobTimer.Start();
         }
