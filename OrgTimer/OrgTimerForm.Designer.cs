@@ -33,6 +33,11 @@
             this.ActionButton = new System.Windows.Forms.Button();
             this.JobTimer = new System.Windows.Forms.Timer(this.components);
             this.OrgTimerNotify = new System.Windows.Forms.NotifyIcon(this.components);
+            this.OrgTimerMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minimizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrgTimerMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // ActionButton
@@ -55,10 +60,41 @@
             // 
             // OrgTimerNotify
             // 
+            this.OrgTimerNotify.ContextMenuStrip = this.OrgTimerMenu;
             this.OrgTimerNotify.Icon = ((System.Drawing.Icon)(resources.GetObject("OrgTimerNotify.Icon")));
             this.OrgTimerNotify.Text = "Org Timer";
             this.OrgTimerNotify.Visible = true;
             this.OrgTimerNotify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OrgTimerNotify_MouseDoubleClick);
+            // 
+            // OrgTimerMenu
+            // 
+            this.OrgTimerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.restoreToolStripMenuItem,
+            this.minimizeToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.OrgTimerMenu.Name = "OrgTimerMenu";
+            this.OrgTimerMenu.Size = new System.Drawing.Size(153, 92);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // restoreToolStripMenuItem
+            // 
+            this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restoreToolStripMenuItem.Text = "Restore";
+            this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
+            // 
+            // minimizeToolStripMenuItem
+            // 
+            this.minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
+            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minimizeToolStripMenuItem.Text = "Minimize";
+            this.minimizeToolStripMenuItem.Click += new System.EventHandler(this.minimizeToolStripMenuItem_Click);
             // 
             // OrgTimerForm
             // 
@@ -75,6 +111,8 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OrgTimerForm_FormClosing);
+            this.OrgTimerMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -84,6 +122,10 @@
         private System.Windows.Forms.Button ActionButton;
         private System.Windows.Forms.Timer JobTimer;
         private System.Windows.Forms.NotifyIcon OrgTimerNotify;
+        private System.Windows.Forms.ContextMenuStrip OrgTimerMenu;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minimizeToolStripMenuItem;
     }
 }
 
