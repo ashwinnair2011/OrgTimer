@@ -89,9 +89,9 @@ namespace OrgTimer
         private void minimizeToolStripMenuItem_Click(object sender, EventArgs e) => HideWindow();
         private void restoreToolStripMenuItem_Click(object sender, EventArgs e) => ShowWindow();
 
-        private void HideWindow() => this.WindowState = FormWindowState.Minimized;
-        private void ShowWindow() => this.WindowState = FormWindowState.Normal;
-        private bool IsWindowHidden() => this.WindowState == FormWindowState.Minimized;
+        private void HideWindow() => this.Hide();
+        private void ShowWindow() => this.Show();
+        private bool IsWindowHidden() => true; //this.WindowState == FormWindowState.Minimized;
 
     }
 }
