@@ -5,7 +5,7 @@ using System.Configuration;
 
 namespace OrgTimer
 {
-    public partial class Form1 : Form
+    public partial class OrgTimerForm : Form
     {
         enum TimerState
         {
@@ -19,7 +19,7 @@ namespace OrgTimer
         private readonly string _timeFormat;
         TimerState _timerState;
 
-        public Form1()
+        public OrgTimerForm()
         {
             InitializeComponent();
             _timerState = TimerState.Stopped;

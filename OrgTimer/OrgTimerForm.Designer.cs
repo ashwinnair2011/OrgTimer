@@ -1,6 +1,6 @@
 ﻿namespace OrgTimer
 {
-    partial class Form1
+    partial class OrgTimerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrgTimerForm));
             this.ActionButton = new System.Windows.Forms.Button();
             this.JobTimer = new System.Windows.Forms.Timer(this.components);
             this.OrgTimerNotify = new System.Windows.Forms.NotifyIcon(this.components);
@@ -60,7 +60,7 @@
             this.OrgTimerNotify.Visible = true;
             this.OrgTimerNotify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OrgTimerNotify_MouseDoubleClick);
             // 
-            // Form1
+            // OrgTimerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -69,7 +69,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "OrgTimerForm";
             this.Opacity = 0.75D;
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ShowInTaskbar = false;
