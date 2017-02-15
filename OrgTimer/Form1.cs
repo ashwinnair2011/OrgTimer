@@ -13,9 +13,10 @@ namespace OrgTimer
             Chilling,
             Stopped
         }
-        int _workIntervalInSecs;
-        int _chillIntervalInSecs;
         int _currentIntervalTimeInSecs;
+        private readonly int _chillIntervalInSecs;
+        private readonly int _workIntervalInSecs;
+        private readonly string _timeFormat;
         TimerState _timerState;
 
         public Form1()
@@ -24,6 +25,7 @@ namespace OrgTimer
             _timerState = TimerState.Stopped;
             _workIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["WorkIntervalInSecs"]);
             _chillIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["ChillIntervalInSecs"]);
+            _timeFormat = ConfigurationManager.AppSettings["TimeFormat"];
         }
 
         private void ActionButton_Click(object sender, EventArgs e)
@@ -49,7 +51,7 @@ namespace OrgTimer
         private void JobTimer_Tick(object sender, EventArgs e)
         {
             JobTimer.Stop();
-            string timeLeft = TimeSpan.FromSeconds(--_currentIntervalTimeInSecs).ToString(@"mm\:ss");
+            string timeLeft = TimeSpan.FromSeconds(--_currentIntervalTimeInSecs).ToString(_timeFormat);
             ActionButton.Text = _timerState.ToString() + " " + timeLeft;
             if (_currentIntervalTimeInSecs == 0)
             {
