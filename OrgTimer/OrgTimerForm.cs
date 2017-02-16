@@ -18,8 +18,9 @@ namespace OrgTimer
         private readonly int _chillIntervalInSecs;
         private readonly int _workIntervalInSecs;
         private readonly string _timeFormat;
-        private bool _allowQuit;
+        private readonly bool _showMinimizeBalloonTip;
         private TimerState _timerState;
+        private bool _allowQuit;
         private bool _isPaused = true;
 
         public OrgTimerForm()
@@ -29,6 +30,7 @@ namespace OrgTimer
             _workIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["WorkIntervalInSecs"]);
             _chillIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["ChillIntervalInSecs"]);
             _timeFormat = ConfigurationManager.AppSettings["TimeFormat"];
+            _showMinimizeBalloonTip = Convert.ToBoolean(ConfigurationManager.AppSettings["ShowMinimizeBalloonTip"]);
         }
 
         private void Pause()
@@ -94,11 +96,14 @@ namespace OrgTimer
         {
             if (_allowQuit) return;
             HideWindow();
-            OrgTimerNotify.ShowBalloonTip(2000,
-                "Org Timer Minimized",
-                "Org Timer will continue to run in the Notification area. Right click the notification icon to exit.",
-                ToolTipIcon.Info);
             e.Cancel = true;
+            if (_showMinimizeBalloonTip)
+            {
+                OrgTimerNotify.ShowBalloonTip(2000,
+                    "Org Timer Minimized",
+                    "Org Timer will continue to run in the Notification area. Right click the notification icon to exit.",
+                    ToolTipIcon.Info);
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
