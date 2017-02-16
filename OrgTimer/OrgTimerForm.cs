@@ -20,7 +20,7 @@ namespace OrgTimer
         private readonly string _timeFormat;
         private bool _allowQuit;
         private TimerState _timerState;
-        private bool _isPaused;
+        private bool _isPaused = true;
 
         public OrgTimerForm()
         {
@@ -29,7 +29,6 @@ namespace OrgTimer
             _workIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["WorkIntervalInSecs"]);
             _chillIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["ChillIntervalInSecs"]);
             _timeFormat = ConfigurationManager.AppSettings["TimeFormat"];
-            _isPaused = true;
         }
 
         private void Pause()
