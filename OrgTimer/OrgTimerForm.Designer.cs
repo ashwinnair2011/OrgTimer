@@ -34,9 +34,10 @@
             this.JobTimer = new System.Windows.Forms.Timer(this.components);
             this.OrgTimerNotify = new System.Windows.Forms.NotifyIcon(this.components);
             this.OrgTimerMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minimizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlayPauseButton = new System.Windows.Forms.Button();
             this.OrgTimerMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,34 +74,49 @@
             this.minimizeToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.OrgTimerMenu.Name = "OrgTimerMenu";
-            this.OrgTimerMenu.Size = new System.Drawing.Size(153, 92);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.OrgTimerMenu.Size = new System.Drawing.Size(124, 70);
             // 
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.restoreToolStripMenuItem.Text = "Restore";
             this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
             // 
             // minimizeToolStripMenuItem
             // 
             this.minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
-            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.minimizeToolStripMenuItem.Text = "Minimize";
             this.minimizeToolStripMenuItem.Click += new System.EventHandler(this.minimizeToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // PlayPauseButton
+            // 
+            this.PlayPauseButton.BackColor = System.Drawing.Color.Transparent;
+            this.PlayPauseButton.BackgroundImage = global::OrgTimer.Properties.Resources.playImage;
+            this.PlayPauseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PlayPauseButton.FlatAppearance.BorderSize = 0;
+            this.PlayPauseButton.Location = new System.Drawing.Point(3, 0);
+            this.PlayPauseButton.Name = "PlayPauseButton";
+            this.PlayPauseButton.Size = new System.Drawing.Size(22, 22);
+            this.PlayPauseButton.TabIndex = 1;
+            this.PlayPauseButton.UseVisualStyleBackColor = false;
+            this.PlayPauseButton.Visible = false;
+            this.PlayPauseButton.Click += new System.EventHandler(this.PlayPauseButton_Click);
             // 
             // OrgTimerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(249, 68);
+            this.Controls.Add(this.PlayPauseButton);
             this.Controls.Add(this.ActionButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -126,6 +142,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem minimizeToolStripMenuItem;
+        private System.Windows.Forms.Button PlayPauseButton;
     }
 }
 

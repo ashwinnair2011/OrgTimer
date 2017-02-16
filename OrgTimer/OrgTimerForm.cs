@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Configuration;
+using OrgTimer.Properties;
 
 namespace OrgTimer
 {
@@ -17,8 +18,9 @@ namespace OrgTimer
         private readonly int _chillIntervalInSecs;
         private readonly int _workIntervalInSecs;
         private readonly string _timeFormat;
-        private bool _allowQuit = false;
+        private bool _allowQuit;
         private TimerState _timerState;
+        private bool _isPaused;
 
         public OrgTimerForm()
         {
@@ -27,6 +29,22 @@ namespace OrgTimer
             _workIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["WorkIntervalInSecs"]);
             _chillIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["ChillIntervalInSecs"]);
             _timeFormat = ConfigurationManager.AppSettings["TimeFormat"];
+            _isPaused = true;
+        }
+
+        private void Pause()
+        {
+            JobTimer.Stop();
+            PlayPauseButton.BackgroundImage = Resources.playImage;
+            ActionButton.Enabled = _isPaused;
+            _isPaused = !_isPaused;
+        }
+        private void Play()
+        {
+            JobTimer.Start();
+            PlayPauseButton.BackgroundImage = Resources.pauseImage;
+            ActionButton.Enabled = _isPaused;
+            _isPaused = !_isPaused;
         }
 
         private void ActionButton_Click(object sender, EventArgs e)
@@ -35,11 +53,16 @@ namespace OrgTimer
             switch (_timerState)
             {
                 case TimerState.Stopped:
+                    //start timer for 10 minutes
+                    _timerState = TimerState.Working;
+                    _currentIntervalTimeInSecs = _workIntervalInSecs;
+                    PlayPauseButton.Visible = true;
+                    Play();
+                    break;
                 case TimerState.Chilling:
                     //start timer for 10 minutes
                     _timerState = TimerState.Working;
                     _currentIntervalTimeInSecs = _workIntervalInSecs;
-                    JobTimer.Start();
                     break;
                 case TimerState.Working:
                     //start timer for 2 minutes
@@ -72,9 +95,9 @@ namespace OrgTimer
         {
             if (_allowQuit) return;
             HideWindow();
-            OrgTimerNotify.ShowBalloonTip(2000, 
-                "Org Timer Minimized", 
-                "Org Timer will continue to run in the Notification area. Right click the notification icon to exit.", 
+            OrgTimerNotify.ShowBalloonTip(2000,
+                "Org Timer Minimized",
+                "Org Timer will continue to run in the Notification area. Right click the notification icon to exit.",
                 ToolTipIcon.Info);
             e.Cancel = true;
         }
@@ -93,5 +116,12 @@ namespace OrgTimer
         private void ShowWindow() => this.Show();
         private bool IsWindowHidden() => true; //this.WindowState == FormWindowState.Minimized;
 
+        private void PlayPauseButton_Click(object sender, EventArgs e)
+        {
+            if (_isPaused)
+                Play();
+            else
+                Pause();
+        }
     }
 }
