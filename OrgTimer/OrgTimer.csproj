@@ -71,6 +71,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="AutoBuild\BuildInReleaseMode.bat" />
+    <None Include="AutoBuild\BuildResults\OrgTimer.exe.config" />
+    <None Include="AutoBuild\OrgTimerRelease.exe.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -91,7 +94,14 @@
     <EmbeddedResource Include="Resources\rsz_pause.png" />
     <EmbeddedResource Include="Resources\rsz_play.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="AutoBuild\BuildResults\OrgTimer.exe" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
