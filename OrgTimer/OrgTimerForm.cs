@@ -99,9 +99,14 @@ namespace OrgTimer
             e.Cancel = true;
             if (!_showMinimizeBalloonTip) return;
             _showMinimizeBalloonTip = false;
+            ShowMinimizedBalloonTip();
+        }
+
+        private void ShowMinimizedBalloonTip()
+        {
             OrgTimerNotify.ShowBalloonTip(2000,
                 "Org Timer Minimized",
-                "Org Timer will continue to run in the Notification area. Right click the notification icon to exit.",
+                "Org Timer is still running. Right click the notification icon in the taskbar to exit/restore.",
                 ToolTipIcon.Info);
         }
 

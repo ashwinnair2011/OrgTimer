@@ -28,7 +28,7 @@ namespace OrgTimer
             }
             else
             {
-                MessageBox.Show("An instance of the application is already running.");
+                MessageBox.Show(@"OrgTimer is already running. In case it's not visible, it might be running in the notification area of the taskbar.");
             }
         }
     }
