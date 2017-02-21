@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Ashwin Nair Tech")]
 [assembly: ObfuscateAssembly(true, StripAfterObfuscation = true)]
 [assembly: AssemblyProduct("OrgTimer")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017 Ashwin Nair")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
