@@ -54,31 +54,32 @@ namespace OrgTimer
             switch (_timerState)
             {
                 case TimerState.Stopped:
-                    //start timer for 10 minutes
+                    //start timer for _workIntervalInSecs
                     _timerState = TimerState.Working;
                     _currentIntervalTimeInSecs = _workIntervalInSecs;
                     PlayPauseButton.Visible = true;
                     Play();
                     break;
                 case TimerState.Chilling:
-                    //start timer for 10 minutes
+                    //start timer for _workIntervalInSecs
                     _timerState = TimerState.Working;
                     _currentIntervalTimeInSecs = _workIntervalInSecs;
                     break;
                 case TimerState.Working:
-                    //start timer for 2 minutes
+                    //start timer for _chillIntervalInSecs
                     _timerState = TimerState.Chilling;
                     _currentIntervalTimeInSecs = _chillIntervalInSecs;
                     break;
             }
         }
 
+        //Timer ticks every second
         private void JobTimer_Tick(object sender, EventArgs e)
         {
             JobTimer.Stop();
             var timeLeft = TimeSpan.FromSeconds(--_currentIntervalTimeInSecs).ToString(_timeFormat);
-            ActionButton.Text = $@"{_timerState} {timeLeft}";
-            if (_currentIntervalTimeInSecs == 0)
+            ActionButton.Text = $@"{_timerState} {timeLeft}"; //display time left
+            if (_currentIntervalTimeInSecs == 0) //show alarm if required
             {
                 SwitchToAlarmMode();
             }
@@ -92,6 +93,11 @@ namespace OrgTimer
         }
 
 
+        /// <summary>
+        /// CLose form only if called via exitToolBarMenuItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OrgTimerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_allowQuit) return;
