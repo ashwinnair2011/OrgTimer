@@ -3,20 +3,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Configuration;
 using OrgTimer.Properties;
+using System.Collections.Generic;
 
 namespace OrgTimer
 {
     public partial class OrgTimerForm : Form
     {
-        private enum TimerState
-        {
-            Working,
-            Chilling,
-            Stopped
-        }
+        private Dictionary<TimerState, TimerStateDetails> _timerStateDetails;
         private int _currentIntervalTimeInSecs;
-        private readonly int _chillIntervalInSecs;
-        private readonly int _workIntervalInSecs;
         private readonly string _timeFormat;
         private bool _showMinimizeBalloonTip;
         private TimerState _timerState;
@@ -27,10 +21,21 @@ namespace OrgTimer
         {
             InitializeComponent();
             _timerState = TimerState.Stopped;
-            _workIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["WorkIntervalInSecs"]);
-            _chillIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["ChillIntervalInSecs"]);
+            PopulateTimerStateDetails();
             _timeFormat = ConfigurationManager.AppSettings["TimeFormat"];
             _showMinimizeBalloonTip = true;
+        }
+
+        private void PopulateTimerStateDetails()
+        {
+            var workIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["WorkIntervalInSecs"]);
+            var chillIntervalInSecs = Convert.ToInt32(ConfigurationManager.AppSettings["ChillIntervalInSecs"]);
+
+            _timerStateDetails = new Dictionary<TimerState, TimerStateDetails> {
+                {TimerState.Stopped, new TimerStateDetails(workIntervalInSecs, Color.SeaShell) },
+                {TimerState.Working, new TimerStateDetails(workIntervalInSecs, Color.SeaShell) },
+                {TimerState.Chilling, new TimerStateDetails(chillIntervalInSecs, Color.SandyBrown) }
+            };
         }
 
         private void Pause()
@@ -50,27 +55,20 @@ namespace OrgTimer
 
         private void ActionButton_Click(object sender, EventArgs e)
         {
-            ActionButton.BackColor = Color.SeaShell;
             switch (_timerState)
             {
                 case TimerState.Stopped:
-                    //start timer for _workIntervalInSecs
                     _timerState = TimerState.Working;
-                    _currentIntervalTimeInSecs = _workIntervalInSecs;
                     PlayPauseButton.Visible = true;
                     Play();
                     break;
                 case TimerState.Chilling:
-                    //start timer for _workIntervalInSecs
-                    _timerState = TimerState.Working;
-                    _currentIntervalTimeInSecs = _workIntervalInSecs;
-                    break;
+                    _timerState = TimerState.Working; break;
                 case TimerState.Working:
-                    //start timer for _chillIntervalInSecs
-                    _timerState = TimerState.Chilling;
-                    _currentIntervalTimeInSecs = _chillIntervalInSecs;
-                    break;
+                    _timerState = TimerState.Chilling; break;
             }
+            _currentIntervalTimeInSecs = _timerStateDetails[_timerState].IntervalInSeconds;
+            ActionButton.BackColor = _timerStateDetails[_timerState].Colour;
         }
 
         //Timer ticks every second

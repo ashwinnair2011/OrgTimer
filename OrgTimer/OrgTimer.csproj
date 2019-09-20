@@ -58,6 +58,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimerState.cs" />
+    <Compile Include="TimerStateDetails.cs" />
     <EmbeddedResource Include="OrgTimerForm.resx">
       <DependentUpon>OrgTimerForm.cs</DependentUpon>
     </EmbeddedResource>
