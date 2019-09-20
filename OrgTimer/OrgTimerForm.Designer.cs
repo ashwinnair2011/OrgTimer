@@ -45,9 +45,10 @@
             // 
             this.ActionButton.BackColor = System.Drawing.Color.SeaShell;
             this.ActionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActionButton.Location = new System.Drawing.Point(2, 1);
+            this.ActionButton.Location = new System.Drawing.Point(3, 1);
+            this.ActionButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ActionButton.Name = "ActionButton";
-            this.ActionButton.Size = new System.Drawing.Size(245, 65);
+            this.ActionButton.Size = new System.Drawing.Size(327, 80);
             this.ActionButton.TabIndex = 0;
             this.ActionButton.Tag = "";
             this.ActionButton.Text = "Start";
@@ -69,31 +70,32 @@
             // 
             // OrgTimerMenu
             // 
+            this.OrgTimerMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.OrgTimerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.restoreToolStripMenuItem,
             this.minimizeToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.OrgTimerMenu.Name = "OrgTimerMenu";
-            this.OrgTimerMenu.Size = new System.Drawing.Size(124, 70);
+            this.OrgTimerMenu.Size = new System.Drawing.Size(140, 76);
             // 
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
             this.restoreToolStripMenuItem.Text = "Restore";
             this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
             // 
             // minimizeToolStripMenuItem
             // 
             this.minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
-            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
             this.minimizeToolStripMenuItem.Text = "Minimize";
             this.minimizeToolStripMenuItem.Click += new System.EventHandler(this.minimizeToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -103,9 +105,10 @@
             this.PlayPauseButton.BackgroundImage = global::OrgTimer.Properties.Resources.playImage;
             this.PlayPauseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PlayPauseButton.FlatAppearance.BorderSize = 0;
-            this.PlayPauseButton.Location = new System.Drawing.Point(3, 0);
+            this.PlayPauseButton.Location = new System.Drawing.Point(4, 0);
+            this.PlayPauseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PlayPauseButton.Name = "PlayPauseButton";
-            this.PlayPauseButton.Size = new System.Drawing.Size(22, 22);
+            this.PlayPauseButton.Size = new System.Drawing.Size(29, 27);
             this.PlayPauseButton.TabIndex = 1;
             this.PlayPauseButton.UseVisualStyleBackColor = false;
             this.PlayPauseButton.Visible = false;
@@ -113,13 +116,14 @@
             // 
             // OrgTimerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 68);
+            this.ClientSize = new System.Drawing.Size(332, 84);
             this.Controls.Add(this.PlayPauseButton);
             this.Controls.Add(this.ActionButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "OrgTimerForm";
             this.Opacity = 0.75D;
